@@ -1,5 +1,3 @@
-import imp
-from matplotlib.pyplot import cla
 from rest_framework import serializers
 from EmployeeApp.models import Departments, Employees
 
