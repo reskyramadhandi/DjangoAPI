@@ -14,8 +14,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Departments',
             fields=[
-                ('DepartmentId', models.AutoField(primary_key=True, serialize=False)),
-                ('DepartmentTime', models.CharField(max_length=500)),
+                ('DepartmentId', models.AutoField(
+                    primary_key=True, serialize=False)),
+                ('DepartmentName', models.CharField(max_length=500)),
             ],
         ),
         migrations.CreateModel(
