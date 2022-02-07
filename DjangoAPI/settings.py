@@ -10,7 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from pathlib import Path
 import os
+
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+MEDIA_URL = '/Photos/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "Photos")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
