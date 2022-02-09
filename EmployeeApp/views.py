@@ -13,7 +13,7 @@ from django.core.files.storage import default_storage
 
 
 @csrf_exempt
-def departmentApi(request, id=0):
+def department_api(request, id=0):
     if request.method == 'GET':
         departments = Departments.objects.all()
         departments_serializer = DepartmentSerializer(departments, many=True)
@@ -42,7 +42,7 @@ def departmentApi(request, id=0):
 
 
 @csrf_exempt
-def employeeApi(request, id=0):
+def employee_api(request, id=0):
     if request.method == 'GET':
         employees = Employees.objects.all()
         employees_serializer = EmployeeSerializer(employees, many=True)
@@ -71,7 +71,7 @@ def employeeApi(request, id=0):
 
 
 @csrf_exempt
-def SaveFile(request):
+def save_file(request):
     file = request.FILES['file']
     file_name = default_storage.save(file.name, file)
     return JsonResponse(file_name, safe=False)
