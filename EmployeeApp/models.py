@@ -8,9 +8,15 @@ class Departments(models.Model):
     DepartmentName = models.CharField(max_length=500)
 
 
+class Grades(models.Model):
+    GradeId = models.AutoField(primary_key=True)
+    GradeName = models.CharField(max_length=500)
+
+
 class Employees(models.Model):
     EmployeeId = models.AutoField(primary_key=True)
     EmployeeName = models.CharField(max_length=500)
     DateOfJoining = models.DateField()
     PhotoFileName = models.CharField(max_length=500)
     DepartmentId = models.IntegerField()
+    GradeId = models.IntegerField()
