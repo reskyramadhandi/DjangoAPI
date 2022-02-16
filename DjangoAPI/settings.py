@@ -30,7 +30,7 @@ SECRET_KEY = '_2fmrwc@7_!_dn6)*=*()*5#%3+6a40z1%&c%e3a&gw$61j1z!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['charlie-server', 'delta-server']
+ALLOWED_HOSTS = ['localhost', 'charlie-server', 'delta-server']
 
 
 # Application definition

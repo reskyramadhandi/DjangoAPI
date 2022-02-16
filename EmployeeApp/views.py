@@ -1,11 +1,10 @@
-import re
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from EmployeeApp.models import Departments, Employees
-from EmployeeApp.serializers import DepartmentSerializer, EmployeeSerializer
+from EmployeeApp.models import Departments, Employees, Grades
+from EmployeeApp.serializers import DepartmentSerializer, EmployeeSerializer, GradeSerializer
 
 from django.core.files.storage import default_storage
 
@@ -38,6 +37,33 @@ def department_api(request, id=0):
     elif request.method == 'DELETE':
         department = Departments.objects.get(DepartmentId=id)
         department.delete()
+        return JsonResponse("Deleted Sucessfully", safe=False)
+
+def grade_api(request, id=0):
+    if request.method == 'GET':
+        grades = Grades.objects.all()
+        grades_serializer = GradeSerializer(grades, many=True)
+        return JsonResponse(grades_serializer.data, safe=False)
+    elif request.method == 'POST':
+        grade_data = JSONParser().parse(request)
+        gradess_serializer = GradeSerializer(data=grade_data)
+        if grades_serializer.is_valid():
+            grades_serializer.save()
+            return JsonResponse("Added Sucessfully", safe=False)
+        return JsonResponse("Failed to Add", safe=False)
+    elif request.method == 'PUT':
+        grade_data = JSONParser().parse(request)
+        grade = Grades.objects.get(
+            GradeId=grade_data['GradeId'])
+        grades_serializer = GradeSerializer(
+            grade, data=grade_data)
+        if grades_serializer.is_valid():
+            grades_serializer.save()
+            return JsonResponse("Updated Sucessfully", safe=False)
+        return JsonResponse("Failed to Update", safe=False)
+    elif request.method == 'DELETE':
+        grade = Grades.objects.get(GradeId=id)
+        grade.delete()
         return JsonResponse("Deleted Sucessfully", safe=False)
 
 
